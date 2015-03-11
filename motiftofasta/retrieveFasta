@@ -1,0 +1,12 @@
+#!/bin/bash
+
+python queryScript.py $1 > out
+
+while read line
+do
+	name=$line
+	wget http://www.rcsb.org/pdb/files/fasta.txt?structureIdList=$name -O $name
+done < out
+
+rm out
+
